@@ -14,7 +14,8 @@
 		"npm.autoDetect": "off",
 		"files.associations": {
 			"type_traits": "cpp",
-			"*.rh": "cpp"
+			"*.rh": "cpp",
+			"fft": "cpp"
 		}
 	},
 	"extensions": {

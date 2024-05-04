@@ -43,7 +43,8 @@ public class ImSlateEditor : ModuleRules
 				"Engine",
 				"Slate",
 				"SlateCore",
-				"ImSlateRuntime"
+				"ImSlateRuntime",
+				"PropertyEditor"
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

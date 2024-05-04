@@ -9,6 +9,8 @@
 #include "Widgets/Text/STextBlock.h"
 #include "ToolMenus.h"
 #include "SImSlateWindowsViewer.h"
+#include "ImSlateManager.h"
+#include "ImSlateWidgetBuilder.h"
 
 static const FName ImSlateTabName("ImSlate");
 
@@ -35,6 +37,8 @@ void FImSlateEditorModule::StartupModule()
 	FGlobalTabmanager::Get()->RegisterNomadTabSpawner(ImSlateTabName, FOnSpawnTab::CreateRaw(this, &FImSlateEditorModule::OnSpawnPluginTab))
 		.SetDisplayName(LOCTEXT("FImSlateTabTitle", "ImSlate"))
 		.SetMenuType(ETabSpawnerMenuType::Hidden);
+
+	UImSlateManager::WidgetBuilder = new FImSlateWidgetBuilder();
 }
 
 void FImSlateEditorModule::ShutdownModule()
@@ -51,6 +55,8 @@ void FImSlateEditorModule::ShutdownModule()
 	FImSlateCommands::Unregister();
 
 	FGlobalTabmanager::Get()->UnregisterNomadTabSpawner(ImSlateTabName);
+
+	UImSlateManager::WidgetBuilder = nullptr;
 }
 
 TSharedRef<SDockTab> FImSlateEditorModule::OnSpawnPluginTab(const FSpawnTabArgs& SpawnTabArgs)

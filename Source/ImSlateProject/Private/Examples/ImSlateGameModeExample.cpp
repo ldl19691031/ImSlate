@@ -3,6 +3,9 @@
 
 #include "Examples/ImSlateGameModeExample.h"
 #include "ImSlateRuntime.h"
+#include "ImSlateSimpleEditorWindow.h"
+#include "Materials/Material.h"
+
 AImSlateGameModeExample::AImSlateGameModeExample()
 {
     PrimaryActorTick.bStartWithTickEnabled = true;
@@ -39,6 +42,25 @@ void AImSlateGameModeExample::Tick(float DeltaTime)
 
         static FVector vectorValue = FVector::ZeroVector;
         ImSlate::InputVector("Vector Value", vectorValue);
+
+        static UObject* materialValue = nullptr;
+        ImSlate::InputAsset("Material Value", materialValue, UMaterial::StaticClass());
     }
     ImSlate::End();
 }
+
+static FImSlateSimpleEditorWindow ExampleWindow(
+    []()
+    {
+        static int32 counter = 0;
+        ImSlate::Begin("Simple Editor Window Example");
+        {
+            ImSlate::Text(FString::Printf(TEXT("Counter: %d"), counter));
+            if (ImSlate::Button("Click Me"))
+            {
+                counter ++;
+            }
+        }
+        ImSlate::End();
+    }
+);
