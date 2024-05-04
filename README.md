@@ -94,6 +94,14 @@ You can also use this in your actor classes, but remember, if you have multiple 
 
 A solution is add a suffix to each window, based on your actor's name.
 
+# APIs
+
+Currently this plugin only support a small number of ImGUI APIs, please check this file:
+
+```
+Plugins\ImSlate\Source\ImSlateRuntime\Public\ImSlateFunctions.h
+```
+
 # References
 
 https://github.com/ocornut/imgui
